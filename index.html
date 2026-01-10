@@ -43,7 +43,6 @@
             padding: 30px;
         }
         
-        /* The middle column needs to scroll smoothly for the links to work */
         #work-col {
             overflow-y: auto;
             scroll-behavior: smooth; 
@@ -69,16 +68,25 @@
 
         /* --- TEXT STYLING --- */
         h1 { font-size: 14px; text-transform: uppercase; margin: 0 0 5px 0; color: var(--highlight); letter-spacing: 1px; }
-        h2 { font-size: 18px; text-transform: uppercase; margin: 60px 0 20px 0; color: var(--highlight); border-bottom: 1px solid #333; padding-bottom: 10px; }
+        
+        h2 { 
+            font-size: 16px; 
+            text-transform: uppercase; 
+            margin: 80px 0 30px 0; /* Extra spacing for separation */
+            color: var(--highlight); 
+            border-bottom: 1px solid #333; 
+            padding-bottom: 10px; 
+            letter-spacing: 1px;
+        }
+        
         h3 { font-size: 12px; text-transform: uppercase; margin: 30px 0 10px 0; color: #888; letter-spacing: 1px; }
         
         p { margin-bottom: 20px; line-height: 1.6; max-width: 650px; }
         
-        /* Standard Links */
+        /* Links */
         a { color: var(--text-color); text-decoration: none; border-bottom: 1px dotted #555; transition: 0.2s; }
         a:hover { color: var(--highlight); border-bottom: 1px solid #fff; }
 
-        /* Navigation Links (Right Sidebar) */
         .nav-link {
             display: block;
             margin-bottom: 8px;
@@ -86,23 +94,25 @@
             border-bottom: none;
             cursor: pointer;
             opacity: 0.7;
+            font-size: 12px;
         }
         .nav-link:hover {
             opacity: 1;
-            padding-left: 5px; /* Slight movement on hover */
+            padding-left: 5px;
             border-bottom: none;
         }
-        .nav-link::before { content: "> "; color: #555; }
+        .nav-link::before { content: "→ "; color: #555; }
 
         .highlight-text { color: var(--highlight); }
 
         /* --- MEDIA CONTAINERS --- */
         .asset-container {
-            margin: 30px 0;
+            margin: 40px 0; /* increased margin for better pacing */
             border: 1px solid #222;
         }
-        .asset-container img { width: 100%; display: block; opacity: 0.9; }
+        .asset-container img { width: 100%; display: block; opacity: 0.95; }
         
+        /* Video Aspect Ratio */
         .video-wrapper {
             position: relative;
             padding-bottom: 56.25%; /* 16:9 */
@@ -111,6 +121,15 @@
         }
         .video-wrapper iframe {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        }
+
+        /* File Label (Optional Technical Touch) */
+        .asset-label {
+            font-size: 10px;
+            color: #444;
+            margin-top: 5px;
+            font-family: monospace;
+            text-transform: lowercase;
         }
 
         /* --- LAYOUT ASSIGNMENTS --- */
@@ -133,7 +152,7 @@
     <div class="grid-container">
         
         <div class="header-cell">Profile</div>
-        <div class="header-cell">Work</div>
+        <div class="header-cell">Work Stream</div>
         <div class="header-cell" style="border-right:none;">Index</div>
 
         <div id="profile-col" class="panel">
@@ -160,51 +179,92 @@
 
         <div id="work-col" class="panel">
             
-            <h2 id="visuals" style="margin-top: 40px;">01 // VISUAL INTELLIGENCE</h2>
+            <h2 id="visuals" style="margin-top: 40px;">01 // VISUAL SYSTEMS</h2>
             
-            <p>This suite of graphics was developed for the House Judiciary Committee's digital campaigns during high-profile hearings and legislative battles. The work required rapid-response production under tight deadlines—translating complex legal and national security issues into clear, compelling visuals optimized for social media platforms.</p>
+            <p>This suite of graphics was developed for the House Judiciary Committee's digital campaigns. The work required rapid-response production under tight deadlines—translating complex legal and national security issues into clear, compelling visuals optimized for social media platforms.</p>
             
             <p>Each asset was designed to drive engagement and shape public narratives. The graphics contributed to record-breaking reach and helped establish the Committee as the top-performing Democratic digital platform on Capitol Hill.</p>
 
             <div class="asset-container">
-                <img src="https://placehold.co/800x450/111/444?text=GRAPHIC+ASSET+01" alt="Judiciary Graphic">
+                <img src="biden-risky-biz.JPG" alt="Biden Risky Business Graphic">
+            </div>
+            
+            <div class="asset-container">
+                <img src="gop-barbarian-poster.JPG" alt="GOP Poster Graphic">
+            </div>
+
+            <div class="asset-container">
+                <img src="gun-violence-ad.PNG" alt="Gun Violence Ad">
+            </div>
+
+            <div class="asset-container">
+                <img src="hi_is_watching_you.JPG" alt="Surveillance Graphic">
+            </div>
+            
+            <div class="asset-container">
+                <img src="mccarthy-debt-ad.JPG" alt="Debt Limit Ad">
+            </div>
+
+            <div class="asset-container">
+                <img src="mike-johnson-voter-ad.JPG" alt="Voter Ad">
+            </div>
+
+            <div class="asset-container">
+                <img src="nadler-mccarthy-quote.JPG" alt="Nadler Quote Graphic">
             </div>
 
             <p>The graphics work delivered immediate and lasting impact. Creative assets became the visual language for the Committee's highest-profile moments—shared by major political accounts and adopted across Democratic leadership offices.</p>
 
-            <h2 id="kinetic">02 // KINETIC MEDIA</h2>
+            <h2 id="motion">02 // MOTION NARRATIVE</h2>
             
-            <p>This video work was produced for the House Judiciary Committee's digital campaigns, capturing high-stakes hearings and breaking news developments. The production model required immediate turnaround—clipping, editing, and publishing video content to control narrative framing before opposition accounts could respond.</p>
+            <p>This video work was produced for digital campaigns, capturing high-stakes hearings and breaking news. The production model required immediate turnaround—clipping, editing, and publishing video content to control narrative framing before opposition accounts could respond.</p>
 
             <div class="asset-container video-wrapper">
-                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&rel=0" frameborder="0" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/1KEnoynuAog?controls=0&rel=0" frameborder="0" allowfullscreen></iframe>
             </div>
+            <div class="asset-label">FILE: 1KEnoynuAog // CAMPAIGN EDIT</div>
 
-            <p>Videos were optimized for platform algorithms: short-form clips designed for mobile viewing, motion graphics that stop scrolling, and emotional pacing that drives shares. The work generated millions of views and established new standards for congressional video production.</p>
+            <div class="asset-container video-wrapper">
+                <iframe src="https://www.youtube.com/embed/M8zM6Y3nhzA?controls=0&rel=0" frameborder="0" allowfullscreen></iframe>
+            </div>
+             <div class="asset-label">FILE: M8zM6Y3nhzA // RAPID RESPONSE</div>
+
+            <div class="asset-container video-wrapper">
+                <iframe src="https://www.youtube.com/embed/uLOfC0C4Sq8?controls=0&rel=0" frameborder="0" allowfullscreen></iframe>
+            </div>
+             <div class="asset-label">FILE: uLOfC0C4Sq8 // HEARING HIGHLIGHT</div>
+
+            <div class="asset-container video-wrapper">
+                <iframe src="https://www.youtube.com/embed/QlJr9gi2KBQ?controls=0&rel=0" frameborder="0" allowfullscreen></iframe>
+            </div>
+             <div class="asset-label">FILE: QlJr9gi2KBQ // NARRATIVE SHORT</div>
+
+            <div class="asset-container video-wrapper">
+                <iframe src="https://www.youtube.com/embed/rnC3EDlzHqU?controls=0&rel=0" frameborder="0" allowfullscreen></iframe>
+            </div>
+             <div class="asset-label">FILE: rnC3EDlzHqU // ENGAGEMENT SPOT</div>
+
+            <p style="margin-top: 30px;">Videos were optimized for platform algorithms: short-form clips designed for mobile viewing, motion graphics that stop scrolling, and emotional pacing that drives shares. The work generated millions of views and established new standards for congressional video production.</p>
             
-            <p>The core challenge was translating complex legal proceedings into emotionally resonant content that algorithms reward. Congressional hearings are dense, procedural, and often difficult to follow—requiring careful selection of moments that communicate stakes without requiring prior context.</p>
-
-            <h2 id="doctrine">03 // OPERATIONAL DOCTRINE</h2>
+            <h2 id="strategy">03 // STRATEGIC FRAMEWORK</h2>
             
             <h3 style="color: #fff;">Understanding the Medium</h3>
             <p>Every platform operates by different rules, and the medium fundamentally shapes how audiences process information. What works on X fails on Instagram. Cable news demands authoritative presentation and production polish; social platforms reward emotional immediacy and conversational authenticity.</p>
             
-            <p>Effective communication requires fluency across these mediums—not just adapting content, but reconceptualizing it entirely for each distribution environment. This isn't about dumbing down content—it's recognizing that narrative power comes from matching message structure to medium mechanics.</p>
+            <p>Effective communication requires fluency across these mediums—not just adapting content, but reconceptualizing it entirely for each distribution environment.</p>
 
             <h3 style="color: #fff;">Infrastructure & Velocity</h3>
-            <p>Translating medium theory into operational practice requires technical infrastructure and production velocity. Over a decade across congressional committees, cable news, and national media, I've built workflows that operationalize these principles: rapid-response systems producing 30+ platform-optimized assets daily, templated frameworks maintaining brand consistency under deadline pressure, and analytics dashboards identifying which emotional framings drive engagement in real time.</p>
+            <p>Translating medium theory into operational practice requires technical infrastructure and production velocity. Over a decade across congressional committees, cable news, and national media, I've built workflows that operationalize these principles: rapid-response systems producing 30+ platform-optimized assets daily, and analytics dashboards identifying which emotional framings drive engagement in real time.</p>
 
-            <p>Controlling narrative means controlling perception before opponents establish their frame. This requires speed, volume, and strategic positioning across multiple platforms simultaneously.</p>
-            
-            <div style="height: 100px;"></div>
+            <div style="height: 150px;"></div>
         </div>
 
         <div id="index-col" class="panel">
             
             <h3>CORE FUNCTIONS</h3>
-            <a href="#visuals" class="nav-link">VISUAL INTELLIGENCE</a>
-            <a href="#kinetic" class="nav-link">KINETIC MEDIA</a>
-            <a href="#doctrine" class="nav-link">OPERATIONAL DOCTRINE</a>
+            <a href="#visuals" class="nav-link">VISUAL SYSTEMS</a>
+            <a href="#motion" class="nav-link">MOTION NARRATIVE</a>
+            <a href="#strategy" class="nav-link">STRATEGIC FRAMEWORK</a>
 
             <hr style="border:0; border-bottom: 1px solid #333; margin: 20px 0;">
 
@@ -236,7 +296,6 @@
     <script>
         function updateClock() {
             const now = new Date();
-            // 24-hour format for that military/scientific precision
             document.getElementById('clock').innerText = now.toLocaleTimeString('en-US', { hour12: false });
         }
         setInterval(updateClock, 1000);

@@ -3,144 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JAY NELSON</title>
+    <title>MERRICK.SYSTEM</title>
     <style>
-        /* --- BRUTALIST STYLE RESET --- */
+        /* --- TERMINAL AESTHETIC VARIABLES --- */
         :root {
-            --bg-color: #f4f4f4; /* Light grey background */
-            --text-color: #000000;
-            --link-color: #0000FF; /* Pure blue links */
-            --hover-color: #FFFF00; /* High-vis yellow hover */
-            --sidebar-width: 280px;
+            --bg-color: #0a0a0a;
+            --text-color: #b0b0b0; 
+            --highlight: #e0e0e0;
+            --border-color: #333333;
+            --accent-color: #00ff00;
+            --font-stack: 'Courier New', Courier, monospace; 
         }
 
         * { box-sizing: border-box; }
 
         body {
-            font-family: 'Courier New', Courier, monospace; /* The "Code" font */
             background-color: var(--bg-color);
             color: var(--text-color);
+            font-family: var(--font-stack);
             margin: 0;
             padding: 0;
-            display: flex;
-            min-height: 100vh;
-            line-height: 1.4;
-        }
-
-        /* --- SIDEBAR (Navigation) --- */
-        nav {
-            width: var(--sidebar-width);
-            padding: 40px;
-            border-right: 2px solid #000; /* Thick raw border */
             height: 100vh;
-            position: fixed;
+            overflow: hidden; 
+            font-size: 13px;
+        }
+
+        /* --- THE GRID --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: 280px 1fr 300px; /* Profile | Feed | Specs */
+            grid-template-rows: 40px 1fr 40px;      /* Header | Content | Footer */
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* --- PANELS & BORDERS --- */
+        .panel {
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 30px;
             overflow-y: auto;
-            background: var(--bg-color);
-            z-index: 10;
+            scrollbar-width: thin;
+            scrollbar-color: #444 #111;
+        }
+        .panel:last-child { border-right: none; } 
+
+        /* --- HEADER ROW --- */
+        .header-cell {
+            border-bottom: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            padding: 0 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            font-size: 11px;
+            font-weight: bold;
+            color: #666;
         }
 
-        nav h1 { font-size: 1.2rem; margin-bottom: 2rem; text-transform: uppercase; letter-spacing: -1px; }
+        /* --- TEXT STYLING --- */
+        h1 { font-size: 14px; text-transform: uppercase; margin: 0 0 5px 0; color: var(--highlight); letter-spacing: 1px; }
+        h2 { font-size: 18px; text-transform: uppercase; margin: 60px 0 20px 0; color: var(--highlight); border-bottom: 1px dashed #333; padding-bottom: 10px; }
+        h3 { font-size: 12px; text-transform: uppercase; margin: 30px 0 10px 0; color: #888; letter-spacing: 1px; }
         
-        .nav-section { margin-bottom: 2rem; }
-        .nav-section strong { display: block; margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.8rem; opacity: 0.6; }
+        p { margin-bottom: 20px; line-height: 1.6; max-width: 650px; }
+        
+        a { color: var(--text-color); text-decoration: none; border-bottom: 1px dotted #555; transition: 0.2s; }
+        a:hover { color: var(--highlight); border-bottom: 1px solid #fff; background: #222; }
 
-        a { text-decoration: none; color: var(--link-color); display: block; margin-bottom: 4px; }
-        a:hover { background-color: var(--hover-color); color: #000; }
+        .highlight-text { color: var(--highlight); }
 
-        /* --- MAIN CONTENT --- */
-        main {
-            margin-left: var(--sidebar-width);
-            padding: 60px;
-            max-width: 900px;
-            animation: fadeIn 1.5s ease; /* Subtle fade-in effect */
+        /* --- MEDIA CONTAINERS --- */
+        .asset-container {
+            margin: 30px 0;
+            border: 1px solid #222;
         }
-
-        section { margin-bottom: 80px; }
-        h2 { font-size: 1.5rem; border-bottom: 1px solid #000; padding-bottom: 10px; margin-bottom: 20px; }
-        p { max-width: 600px; margin-bottom: 20px; font-size: 0.95rem; }
-
-        /* --- MEDIA (Images & Video) --- */
-        img { max-width: 100%; height: auto; border: 1px solid #000; display: block; margin-top: 10px; }
+        .asset-container img { width: 100%; display: block; opacity: 0.9; }
         
-        /* Responsive YouTube Container */
         .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 56.25%; /* 16:9 */
             height: 0;
-            border: 1px solid #000;
             background: #000;
         }
         .video-wrapper iframe {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
         }
 
-        /* --- MOBILE TWEAKS --- */
-        @media (max-width: 768px) {
-            body { display: block; }
-            nav { 
-                width: 100%; 
-                height: auto; 
-                position: relative; 
-                border-right: none; 
-                border-bottom: 2px solid #000; 
-                padding: 20px;
-            }
-            main { margin-left: 0; padding: 20px; }
-        }
+        /* --- LAYOUT ASSIGNMENTS --- */
+        #profile-col { grid-column: 1; grid-row: 2; }
+        #feed-col    { grid-column: 2; grid-row: 2; padding-top: 0; }
+        #specs-col   { grid-column: 3; grid-row: 2; border-right: none; background: #0c0c0c; }
+        .footer-cell { grid-column: 1 / -1; border-top: 1px solid var(--border-color); padding: 0 20px; display: flex; align-items: center; justify-content: space-between; font-size: 10px; text-transform: uppercase; color: #555; }
 
-        /* --- ANIMATION --- */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* --- MOBILE --- */
+        @media (max-width: 900px) {
+            body { overflow: auto; height: auto; }
+            .grid-container { display: block; height: auto; }
+            .panel, .header-cell { border-right: none; border-bottom: 1px solid var(--border-color); height: auto; }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <h1>MERRICK.<br>ARCHIVE</h1>
+    <div class="grid-container">
         
-        <div class="nav-section">
-            <strong>Index</strong>
-            <a href="#about">About / Info</a>
-            <a href="mailto:your-email@gmail.com">Contact</a>
-        </div>
+        <div class="header-cell">Identity_Log</div>
+        <div class="header-cell">Operational_Feed</div>
+        <div class="header-cell" style="border-right:none;">System_Specs</div>
 
-        <div class="nav-section">
-            <strong>Projects</strong>
-            <a href="#campaign24">Campaign Messaging '24</a>
-            <a href="#narrative">Narrative Warfare</a>
-            <a href="#minidv">Mini DV Archives</a>
-        </div>
-    </nav>
-
-    <main>
-
-        <section id="about">
-            <h2>About</h2>
-            <p>
-                Digital strategy and communications professional based in Washington, D.C. 
-                Focusing on narrative subversion, systems thinking, and visual media.
-            </p>
-        </section>
-
-        <section id="campaign24">
-            <h2>Campaign Messaging 2024</h2>
-            <p>Strategic video edits designed for high-engagement social ecosystems. Color graded for Apple Log.</p>
+        <div id="profile-col" class="panel">
+            <h1>MERRICK NELSON</h1>
+            <p style="font-size: 11px; color: #666; margin-bottom: 30px;">COMMUNICATIONS STRATEGIST</p>
             
-            <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+            <p>
+                <span class="highlight-text">Mission:</span><br>
+                Shaping national narratives on law and security — from Capitol Hill to cable news. Specializing in high-stakes campaigns that move public opinion.
+            </p>
+            
+            <br>
+            
+            <p>
+                <span class="highlight-text">Direct Line:</span><br>
+                <a href="mailto:merricknelson@icloud.com">merricknelson@icloud.com</a>
+            </p>
+
+            <br><br><br>
+            <p style="font-size: 10px; opacity: 0.5;">
+                STATUS: AVAILABLE<br>
+                BASE: WASHINGTON D.C.<br>
+                ENCRYPTION: ENABLED
+            </p>
+        </div>
+
+        <div id="feed-col" class="panel">
+            
+            <h2 style="margin-top: 40px;">01 // VISUAL INTELLIGENCE</h2>
+            
+            <p>This suite of graphics was developed for the House Judiciary Committee's digital campaigns during high-profile hearings and legislative battles. The work required rapid-response production under tight deadlines—translating complex legal and national security issues into clear, compelling visuals optimized for social media platforms.</p>
+            
+            <p>Each asset was designed to drive engagement and shape public narratives. The graphics contributed to record-breaking reach and helped establish the Committee as the top-performing Democratic digital platform on Capitol Hill.</p>
+
+            <div class="asset-container">
+                <img src="https://placehold.co/800x450/111/444?text=GRAPHIC+ASSET+01" alt="Judiciary Graphic">
             </div>
-        </section>
 
-        <section id="narrative">
-            <h2>Narrative Analysis</h2>
-            <p>Visualizing data flows and disinformation networks.</p>
-            <img src="https://placehold.co/800x500/png" alt="Data Visualization">
-        </section>
+            <p>The graphics work delivered immediate and lasting impact. Creative assets became the visual language for the Committee's highest-profile moments—shared by major political accounts and adopted across Democratic leadership offices.</p>
 
-    </main>
+            <h2>02 // KINETIC MEDIA</h2>
+            
+            <p>This video work was produced for the House Judiciary Committee's digital campaigns, capturing high-stakes hearings and breaking news developments. The production model required immediate turnaround—clipping, editing, and publishing video content to control narrative framing before opposition accounts could respond.</p>
 
+            <div class="asset-container video-wrapper">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&rel=0" frameborder="0" allowfullscreen></iframe>
+            </div>
+
+            <p>Videos were optimized for platform algorithms: short-form clips designed for mobile viewing, motion graphics that stop scrolling, and emotional pacing that drives shares. The work generated millions of views and established new standards for congressional video production.</p>
+            
+            <p>The core challenge was translating complex legal proceedings into emotionally resonant content that algorithms reward. Congressional hearings are dense, procedural, and often difficult to follow—requiring careful selection of moments that communicate stakes without requiring prior context.</p>
+
+            <h2>03 // OPERATIONAL DOCTRINE</h2>
+            
+            <h3 style="color: #fff;">Understanding the Medium</h3>
+            <p>Every platform operates by different rules, and the medium fundamentally shapes how audiences process information. What works on X fails on Instagram. Cable news demands authoritative presentation and production polish; social platforms reward emotional immediacy and conversational authenticity.</p>
+            
+            <p>Effective communication requires fluency across these mediums—not just adapting content, but reconceptualizing it entirely for each distribution environment. This isn't about dumbing down content—it's recognizing that narrative power comes from matching message structure to medium mechanics.</p>
+
+            <h3 style="color: #fff;">Infrastructure & Velocity</h3>
+            <p>Translating medium theory into operational practice requires technical infrastructure and production velocity. Over a decade across congressional committees, cable news, and national media, I've built workflows that operationalize these principles: rapid-response systems producing 30+ platform-optimized assets daily, templated frameworks maintaining brand consistency under deadline pressure, and analytics dashboards identifying which emotional framings drive engagement in real time.</p>
+
+            <p>Controlling narrative means controlling perception before opponents establish their frame. This requires speed, volume, and strategic positioning across multiple platforms simultaneously.</p>
+        </div>
+
+        <div id="specs-col" class="panel">
+            <h3>CORE FUNCTIONS</h3>
+            <p style="font-size: 11px; margin-bottom: 5px;">> NARRATIVE ARCHITECTURE</p>
+            <p style="font-size: 11px; margin-bottom: 5px;">> RAPID RESPONSE SYSTEMS</p>
+            <p style="font-size: 11px; margin-bottom: 5px;">> VISUAL SUBVERSION</p>
+            <p style="font-size: 11px; margin-bottom: 5px;">> ALGORITHMIC OPTIMIZATION</p>
+
+            <hr style="border:0; border-bottom: 1px solid #333; margin: 20px 0;">
+
+            <h3>METHODOLOGY</h3>
+            <p style="font-size: 11px;">
+                I specialize in translating complex policy into compelling narratives—fusing creative execution with data-driven strategy to advance organizational priorities and generate measurable influence.
+            </p>
+            <p style="font-size: 11px;">
+                Leveraging professional editing software and analytics platforms, I create content that drives engagement, shapes press narratives, and moves the national conversation.
+            </p>
+
+            <hr style="border:0; border-bottom: 1px solid #333; margin: 20px 0;">
+
+            <h3>EXP_LOG</h3>
+            <p style="font-size: 11px; color: #666;">
+                10+ Years Experience<br>
+                Capitol Hill / Cable News<br>
+                High-Stakes Campaigns
+            </p>
+        </div>
+
+        <div class="footer-cell">
+            <span>MERRICK.SYSTEM v2.0</span>
+            <span id="clock">INITIALIZING...</span>
+        </div>
+
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('clock').innerText = now.toLocaleTimeString();
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
 </body>
 </html>
